@@ -47,13 +47,19 @@ function loadPokemon(data) {
 function getHTMLForPokeCard(data, i) {
     return `
     <div id="${data[i].id}" class="poke-card">
-    <img class="sprite" src="${data[i].sprites.front_default}">
-    <div class="data">
-        <p>Name: ${data[i].name}</p>
-        <p>Height: ${data[i].height}</p>
-        <p>Weight: ${data[i].weight}</p>
-    </div>
-    </div>`
+        <img class="sprite" src="${data[i].sprites.other["official-artwork"].front_default}">
+        <div class="data">
+            <p>Name: ${capitalizeFirstLetter(data[i].name)}</p>
+            <p>Height: ${data[i].height / 10} m</p>
+            <p>Weight: ${data[i].weight} lbs.</p>
+            <p>Type: ${data[i].types[0].type.name}</p>
+        </div>
+    </div> `
+}
+
+function capitalizeFirstLetter(word) {
+    const capitalized = word.charAt(0).toUpperCase() + word.slice(1);
+    return capitalized;
 }
 
 // async function fetchPath(url) {
