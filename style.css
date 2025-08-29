@@ -1,0 +1,13 @@
+.sprite {
+    width: 128px;
+    aspect-ratio: 1/1;
+}
+
+.poke-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 64px;
+    outline: 4px solid black;
+}
