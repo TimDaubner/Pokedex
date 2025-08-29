@@ -1,12 +1,3 @@
-
-// async function getPokemnonInfo() {
-//     getBadPromise().then((result) => {
-//         console.log(result);
-//     }).catch((error) => {
-//         console.error(error);
-//     })
-// }
-
 async function getPokemonInfo(start, end) {
     try {
         let response = (await fetch(`${fetchBaseDataPokemonAPI()}/pokemon?offset=${start}&limit=${end}`));
@@ -38,34 +29,64 @@ function fetchBaseDataPokemonAPI() {
 }
 
 function loadPokemon(data) {
-    document.getElementById('content').innerHTML = '';
+    let content = document.getElementById('content');
+    content.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
-        document.getElementById('content').innerHTML += getHTMLForPokeCard(data, i);
+        content.innerHTML += getHTMLForPokeCard(data, i);
+        document.getElementById(data[i].id).innerHTML += getHTMLForDataShow(data, i);
+        document.getElementById(data[i].id).innerHTML += getHTMLForDataMain(data, i);
+        document.getElementById(data[i].id).innerHTML += getHTMLForDataStats(data, i);
     }
 }
 
-function getHTMLForPokeCard(data, i) {
-    return `
-    <div id="${data[i].id}" class="poke-card">
-        <img class="sprite" src="${data[i].sprites.other["official-artwork"].front_default}">
-        <div class="data">
-            <p>Name: ${capitalizeFirstLetter(data[i].name)}</p>
-            <p>Height: ${data[i].height / 10} m</p>
-            <p>Weight: ${data[i].weight} lbs.</p>
-            <p>Type: ${data[i].types[0].type.name}</p>
-        </div>
-    </div> `
+
+function getHTMLForEvolution(data, i) {
+    return `  
+        <div id="evo_chain_${data[i].id}" class="data main d_none">
+            <p>${checkForEvoChain()}</p>
+        </div>`
 }
+
+function toggleInfo(id) {
+    if (document.getElementById(`main_${id}`).classList.contains('d_none')) {
+        document.getElementById(`main_${id}`).classList.remove('d_none');
+        document.getElementById(`stats_${id}`).classList.remove('d_none');
+    }
+    else {
+        document.getElementById(`main_${id}`).classList.add('d_none');
+        document.getElementById(`stats_${id}`).classList.add('d_none');
+    }
+}
+
 
 function capitalizeFirstLetter(word) {
     const capitalized = word.charAt(0).toUpperCase() + word.slice(1);
     return capitalized;
 }
 
-// async function fetchPath(url) {
-//     let response = await fetch(url.toString());
-//     return await response.json();
-// }
+function checkMoreTypes(types) {
+    let _types = '';
+    for (let i = 0; i < types.length; i++) {
+        _types += types[i].type.name + ' ';
+    }
+    return _types.trim();
+}
+
+function checkMoreAbilities(abilities) {
+    let _abilities = '';
+    for (let i = 0; i < abilities.length; i++) {
+        _abilities += abilities[i].ability.name + ' ';
+    }
+    return _abilities.trim();
+}
+
+function checkForEvoChain(evoChain) {
+    let _evoChain = '';
+    for (let i = 0; i < evoChain.length; i++) {
+        _evoChain += evoChain[i].ability.name + ' ';
+    }
+    return _evoChain.trim();
+}
 
 function myFetch() {
     console.log(responseData);

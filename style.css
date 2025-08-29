@@ -1,6 +1,26 @@
+.load-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    font-size: 64px;
+    background-color: aqua;
+}
+
+.sprite-frame {
+    width: 50%;
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 2px solid black;
+}
+
 .sprite {
     width: 256px;
     aspect-ratio: 1/1;
+    background-color: aqua;
 }
 
 .poke-card {
@@ -10,4 +30,40 @@
     flex-direction: column;
     padding: 64px;
     outline: 4px solid black;
+}
+
+.data {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+    outline: 2px solid black;
+}
+
+.show {
+    background-color: rgb(255, 217, 0);
+    padding: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    outline: 2px solid black;
+}
+
+.main {
+    background-color: rgb(218, 185, 0);
+    padding: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    outline: 2px solid black;
+}
+
+.main:hover {
+    background-color: rgb(255, 217, 0);
+}
+
+.d_none {
+    display: none;
 }
