@@ -1,4 +1,5 @@
-.water-card {
+.water-card,
+.ice-card {
     background-color: #68aae6;
 }
 
@@ -6,15 +7,21 @@
     background-color: #e99477;
 }
 
-.psych-card {
+.psychic-card,
+.poison-card,
+.ghost-card {
     background-color: #cea3ce;
 }
 
-.normal-card {
+.normal-card,
+.fairy-card,
+.dragon-card {
     background-color: #d1d5e1;
 }
 
-.fight-card {
+.fighting-card,
+.ground-card,
+.rock-card {
     background-color: #dbba99;
 }
 
@@ -22,7 +29,8 @@
     background-color: #ddde9a;
 }
 
-.plant-card {
+.grass-card,
+.bug-card {
     background-color: #68ba6e;
 }
 
