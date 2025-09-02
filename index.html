@@ -5,25 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/cardcolor.css">
+    <link rel="stylesheet" href="./font/pocket-monk-font/pocketmonk.css">
     <link rel="stylesheet" href="standard.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./img/pokemon-pokeball.gif" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <script src="./scripts/template.js"></script>
     <script src="script.js"></script>
-    <title>Name</title>
+    <title>Pokedex</title>
 </head>
 
 <body onload="init()">
+
     <div id="load_content" class="load-content">
-        Loading...
+        Pokedex Loading...
         <img class="pokeball-load" src="./img/pokemon-pokeball.gif" alt="pokemon-pokeball">
     </div>
+    <header id="header" class="d_none">
+        <nav class="poke-gens">
+            <button class="btn-gen">Gen 1</button>
+            <button class="btn-gen">Gen 2</button>
+            <button class="btn-gen">Gen 3</button>
+            <button class="btn-gen">Gen 4</button>
+            <button class="btn-gen">Gen 5</button>
+            <button class="btn-gen">Gen 6</button>
+            <button class="btn-gen">Gen 7</button>
+            <button class="btn-gen">Gen 8</button>
+            <button class="btn-gen">Gen 9</button>
+        </nav>
+        <div class="search-bar">
+            <button onclick="searchPokemon()" class="btn-search">Search</button><input class="input-pokemon"
+                type="text">
+        </div>
+    </header>
+
     <section class="content" id="content">
     </section>
     <dialog onclick="closePokemon()" id="dialog_pokemon" class="dialog-style d_none">
-        <div id="dialog_pokemon_info" class="pokemon-frame">
+        <div onclick="stopBubbling(event)" id="dialog_pokemon_info" class="pokemon-frame">
         </div>
     </dialog>
 </body>

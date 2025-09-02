@@ -30,13 +30,17 @@ async function getPokemonProperties(pokemonGen) {
 
         let storage = await Promise.all(promises);
         currentPokemon = storage;
-
+        switchLoadingContent();
         renderPokemon(storage);
-        document.getElementById('load_content').classList.add('d_none');
 
     } catch (error) {
         console.error(error);
     }
+}
+
+function switchLoadingContent() {
+    document.getElementById('load_content').classList.add('d_none');
+    document.getElementById('header').classList.remove('d_none');
 }
 
 function renderPokemon(data) {
@@ -77,6 +81,9 @@ function toggleInfo(id) {
     }
 }
 
+function stopBubbling(event) {
+    event.stopPropagation();
+}
 
 function capitalizeFirstLetter(word) {
     const capitalized = word.charAt(0).toUpperCase() + word.slice(1);
