@@ -3,8 +3,6 @@ let currentPokemon = [];
 
 function init() {
     getPokemonGenInfo(0, 151);
-    //WHERE?!
-    // getEvoChain(1, 78);
 }
 
 function getBaseUrl() {
@@ -40,6 +38,67 @@ async function getPokemonProperties(pokemonGen) {
         console.error(error);
     }
 }
+
+function renderPokemon(data) {
+    let content = document.getElementById('content');
+    content.innerHTML = '';
+    for (let i = 0; i < data.length; i++) {
+        const pokemon = data[i];
+        content.innerHTML += getHTMLForPokeCard(pokemon);
+        document.getElementById(pokemon.id).innerHTML += getHTMLForDataShow(pokemon, pokemon.types[0].type.name);
+    }
+}
+
+function filterAndShowNames(filterWord) {
+    pokemonStorage = currentPokemon.filter(name => name.inculdes(filterWord));
+}
+
+function openPokemon(id) {
+    document.getElementById('dialog_pokemon').classList.remove('d_none');
+
+    document.getElementById('dialog_pokemon_info').innerHTML += getHTMLForDataShow(currentPokemon[id - 1], currentPokemon[id - 1].types[0].type.name);
+    document.getElementById('dialog_pokemon_info').innerHTML += getHTMLForDataMain(currentPokemon[id - 1]);
+    document.getElementById('dialog_pokemon_info').innerHTML += getHTMLForDataStats(currentPokemon[id - 1]);
+}
+
+function closePokemon() {
+    document.getElementById('dialog_pokemon_info').innerHTML = '';
+    document.getElementById('dialog_pokemon').classList.add('d_none');
+}
+
+function toggleInfo(id) {
+    if (document.getElementById(`main_${id}`).classList.contains('d_none')) {
+        document.getElementById(`main_${id}`).classList.remove('d_none');
+        document.getElementById(`stats_${id}`).classList.remove('d_none');
+    }
+    else {
+        document.getElementById(`main_${id}`).classList.add('d_none');
+        document.getElementById(`stats_${id}`).classList.add('d_none');
+    }
+}
+
+
+function capitalizeFirstLetter(word) {
+    const capitalized = word.charAt(0).toUpperCase() + word.slice(1);
+    return capitalized;
+}
+
+function checkMoreTypes(types) {
+    let _types = '';
+    for (let i = 0; i < types.length; i++) {
+        _types += types[i].type.name + ' ';
+    }
+    return _types.trim();
+}
+
+function checkMoreAbilities(abilities) {
+    let _abilities = '';
+    for (let i = 0; i < abilities.length; i++) {
+        _abilities += abilities[i].ability.name + ' ';
+    }
+    return _abilities.trim();
+}
+
 
 //TODO: chain get with name ?!
 // async function getEvoChain(id) {
@@ -81,68 +140,3 @@ async function getPokemonProperties(pokemonGen) {
 //         console.error(error);
 //     }
 // }
-
-//TODO: split it and rearange that
-
-function renderPokemon(data) {
-    let content = document.getElementById('content');
-    content.innerHTML = '';
-    let cacheNumber = 0;
-
-    for (let i = 0; i < data.length / 8; i++) {
-        cacheNumber = i;
-        content.innerHTML += getHTMLForPokeCard(data, i);
-        document.getElementById(data[i].id).innerHTML += getHTMLForDataShow(data, i, data[i].types[0].type.name);
-        document.getElementById(data[i].id).innerHTML += getHTMLForDataMain(data, i);
-        document.getElementById(data[i].id).innerHTML += getHTMLForDataStats(data, i);
-        // document.getElementById(data[i].id).innerHTML += `${getPokemonEvolutions()}`;
-    }
-    cacheNumber++;
-    renderMorePokemonData(data, cacheNumber);
-}
-
-function renderMorePokemonData(data, cacheNumber) {
-    for (cacheNumber; cacheNumber < data.length; cacheNumber++) {
-        content.innerHTML += getHTMLForPokeCard(data, cacheNumber);
-        document.getElementById(data[cacheNumber].id).innerHTML += getHTMLForDataShow(data, cacheNumber, data[cacheNumber].types[0].type.name);
-        document.getElementById(data[cacheNumber].id).innerHTML += getHTMLForDataMain(data, cacheNumber);
-        document.getElementById(data[cacheNumber].id).innerHTML += getHTMLForDataStats(data, cacheNumber);
-    }
-}
-
-function filterAndShowNames(filterWord) {
-    pokemonStorage = currentPokemon.filter(name => name.inculdes(filterWord));
-}
-
-function toggleInfo(id) {
-    if (document.getElementById(`main_${id}`).classList.contains('d_none')) {
-        document.getElementById(`main_${id}`).classList.remove('d_none');
-        document.getElementById(`stats_${id}`).classList.remove('d_none');
-    }
-    else {
-        document.getElementById(`main_${id}`).classList.add('d_none');
-        document.getElementById(`stats_${id}`).classList.add('d_none');
-    }
-}
-
-
-function capitalizeFirstLetter(word) {
-    const capitalized = word.charAt(0).toUpperCase() + word.slice(1);
-    return capitalized;
-}
-
-function checkMoreTypes(types) {
-    let _types = '';
-    for (let i = 0; i < types.length; i++) {
-        _types += types[i].type.name + ' ';
-    }
-    return _types.trim();
-}
-
-function checkMoreAbilities(abilities) {
-    let _abilities = '';
-    for (let i = 0; i < abilities.length; i++) {
-        _abilities += abilities[i].ability.name + ' ';
-    }
-    return _abilities.trim();
-}
