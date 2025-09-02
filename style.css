@@ -147,7 +147,7 @@ body {
     flex-direction: column;
     width: 20vw;
     height: 50vh;
-    transform: scale(1.5);
+    transform: scale(1.25);
 }
 
 /* #region utilities */
