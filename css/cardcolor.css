@@ -1,39 +1,92 @@
-.water-card,
-.ice-card {
-    background-color: #68aae6;
+:root {
+    --bug: #3b9852;
+    --dark: #5a5979;
+    --dragon: #60cbd9;
+    --electric: #fbfb72;
+    --fairy: #ea1369;
+    --fighting: #ed6336;
+    --fire: #fd4c5a;
+    --flying: #93b2c7;
+    --ghost: #906790;
+    --grass: #27cb4f;
+    --ground: #6e491f;
+    --ice: #d7f1f8;
+    --normal: #ca98a7;
+    --poison: #9b69d9;
+    --psychic: #f81c91;
+    --rock: #8b3e21;
+    --steel: #41be94;
+    --water: #86a8fc;
 }
 
-.fire-card {
-    background-color: #e99477;
+.bug-no-card {
+    background-color: var(--bug);
 }
 
-.psychic-card,
-.poison-card,
-.ghost-card {
-    background-color: #cea3ce;
+.dark-no-card {
+    background-color: var(--dark);
 }
 
-.normal-card,
-.fairy-card,
-.dragon-card {
-    background-color: #d1d5e1;
+.dragon-no-card {
+    background-color: var(--dragon);
 }
 
-.fighting-card,
-.ground-card,
-.rock-card {
-    background-color: #dbba99;
+.electric-no-card {
+    background-color: var(--electric);
 }
 
-.electric-card {
-    background-color: #ddde9a;
+.fairy-no-card {
+    background-color: var(--fairy);
 }
 
-.grass-card,
-.bug-card {
-    background-color: #68ba6e;
+.fighting-no-card {
+    background-color: var(--fighting);
 }
 
-.corner-card {
-    background-color: #fede7b;
+.fire-no-card {
+    background-color: var(--fire);
+}
+
+.flying-no-card {
+    background-color: var(--flying);
+}
+
+.ghost-no-card {
+    background-color: var(--ghost);
+}
+
+.grass-no-card {
+    background-color: var(--grass);
+}
+
+.ground-no-card {
+    background-color: var(--ground);
+}
+
+.ice-no-card {
+    background-color: var(--ice);
+}
+
+.normal-no-card {
+    background-color: var(--normal);
+}
+
+.poison-no-card {
+    background-color: var(--poison);
+}
+
+.psychic-no-card {
+    background-color: var(--psychic);
+}
+
+.rock-no-card {
+    background-color: var(--psychic);
+}
+
+.steel-no-card {
+    background-color: var(--steel);
+}
+
+.water-no-card {
+    background-color: var(--water);
 }

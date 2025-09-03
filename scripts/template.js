@@ -5,13 +5,13 @@ function getHTMLForPokeCard(pokemon) {
     </div> `
 }
 
-function getHTMLForDataShow(pokemon, color) {
+function getHTMLForDataShow(pokemon, color, color2) {
     return `
         <div id="show_${pokemon.id}" class="data show">
             <p>Name: ${capitalizeFirstLetter(pokemon.name)} #${pokemon.id}</p>
             <p>Type: ${checkMoreTypes(pokemon.types)}</p>
         </div>
-        <div class="sprite-frame ${color}-card">
+        <div class="sprite-frame ${color}-${color2}-card">
             <img class="sprite" src="${pokemon.sprites.other["official-artwork"].front_default}">
         </div>`
 }

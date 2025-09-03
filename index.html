@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/doublecardcolor.css">
     <link rel="stylesheet" href="./css/cardcolor.css">
-    <link rel="stylesheet" href="./font/pocket-monk-font/pocketmonk.css">
     <link rel="stylesheet" href="standard.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./img/pokemon-pokeball.gif" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <script src="./scripts/scrollbehaviour.js"></script>
     <script src="./scripts/template.js"></script>
     <script src="script.js"></script>
     <title>Pokédex</title>
@@ -23,30 +24,39 @@
         Pokédex Loading...
         <img class="pokeball-load" src="./img/pokemon-pokeball.gif" alt="pokemon-pokeball">
     </div>
-    <header id="header" class="d_none">
-        <nav class="poke-gens">
-            <button class="btn-gen">Gen 1</button>
-            <button class="btn-gen">Gen 2</button>
-            <button class="btn-gen">Gen 3</button>
-            <button class="btn-gen">Gen 4</button>
-            <button class="btn-gen">Gen 5</button>
-            <button class="btn-gen">Gen 6</button>
-            <button class="btn-gen">Gen 7</button>
-            <button class="btn-gen">Gen 8</button>
-            <button class="btn-gen">Gen 9</button>
-        </nav>
-        <div class="search-bar">
-            <button onclick="searchPokemon()" class="btn-search">Search</button><input class="input-pokemon"
-                type="text">
-        </div>
-    </header>
+    <div class="wrapper">
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 
-    <section class="content" id="content">
-    </section>
-    <dialog onclick="closePokemon()" id="dialog_pokemon" class="dialog-style d_none">
-        <div onclick="stopBubbling(event)" id="dialog_pokemon_info" class="pokemon-frame">
-        </div>
-    </dialog>
+        <header id="header" class="d_none">
+            <h1>Pokédex</h1>
+            <div class="search-bar">
+                <button onclick="searchPokemon()" class="btn-search">Search</button><input class="input-pokemon"
+                    type="text">
+            </div>
+        </header>
+
+        <nav id="gen" class="poke-gens d_none">
+            <button id="gen_1" onclick="getPokemonGenInfo(0,151), highlightButton(1)" class="btn-gen">Gen 1</button>
+            <button id="gen_2" onclick="getPokemonGenInfo(151,100), highlightButton(2)" class="btn-gen">Gen 2</button>
+            <button id="gen_3" onclick="getPokemonGenInfo(251,135), highlightButton(3)" class="btn-gen">Gen 3</button>
+            <button id="gen_4" onclick="getPokemonGenInfo(386,107), highlightButton(4)" class="btn-gen">Gen 4</button>
+            <button id="gen_5" onclick="getPokemonGenInfo(493,156), highlightButton(5)" class="btn-gen">Gen 5</button>
+            <button id="gen_6" onclick="getPokemonGenInfo(649,72), highlightButton(6)" class="btn-gen">Gen 6</button>
+            <button id="gen_7" onclick="getPokemonGenInfo(721,88), highlightButton(7)" class="btn-gen">Gen 7</button>
+            <button id="gen_8" onclick="getPokemonGenInfo(809,96), highlightButton(8)" class="btn-gen">Gen 8</button>
+            <button id="gen_9" onclick="getPokemonGenInfo(905,120), highlightButton(9)" class="btn-gen">Gen 9</button>
+        </nav>
+
+        <section class="content d_none" id="content">
+        </section>
+        <dialog onclick="closePokemon()" id="dialog_pokemon" class="dialog-style d_none">
+            <div onclick="stopBubbling(event)" id="dialog_pokemon_info" class="pokemon-frame">
+            </div>
+        </dialog>
+    </div>
+
+    <footer>
+    </footer>
 </body>
 
 </html>
