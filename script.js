@@ -7,61 +7,12 @@ function init() {
     getPokemonGenInfo(0, 151);
 }
 
-function getBaseUrl() {
-    let baseURL = "https://pokeapi.co/api/v2";
-    return baseURL;
-}
-
-async function language(lang) {
-    try {
-        let response = await fetch(`${getBaseUrl()}/pokemon-species/1/`);
-        let langDE = await response.json();
-        console.log(langDE);
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-async function getPokemonGenInfo(start, end) {
-    if (offsetPokemon == start) return;
-
-    offsetPokemon = start;
-    switchLoadingContent(true);
-    try {
-        let response = await fetch(`${getBaseUrl()}/pokemon?offset=${start}&limit=${end}`);
-        let pokemonGen = await response.json();
-
-        getPokemonProperties(pokemonGen.results);
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-async function getPokemonProperties(pokemonGen) {
-    try {
-        let promises = pokemonGen.map(async pokemon => {
-            let response = await fetch(pokemon.url);
-            return await response.json();
-        });
-
-        let storage = await Promise.all(promises);
-        currentPokemon = storage;
-        switchLoadingContent(false);
-        renderPokemon(storage);
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-
 function switchLoadingContent(isLoading) {
     if (!isLoading) {
         document.getElementById('load_content').classList.add('d_none');
         document.getElementById('header').classList.remove('d_none');
         document.getElementById('gen').classList.remove('d_none');
         document.getElementById('content').classList.remove('d_none');
-
     }
     else if (isLoading) {
         document.getElementById('load_content').classList.remove('d_none');
@@ -99,19 +50,27 @@ function highlightButton(number) {
 
 function openPokemon(id) {
     let pokeInfoRef = document.getElementById('dialog_pokemon_info');
+    let currentPokemonRef = currentPokemon[id - 1 - offsetPokemon];
+
+    hideElementsForOverlay();
+    checkTypesOfPokemon(pokeInfoRef, currentPokemonRef);
+    pokeInfoRef.innerHTML += getHTMLForDataMain(currentPokemonRef);
+    pokeInfoRef.innerHTML += getHTMLForDataStats(currentPokemonRef);
+}
+
+function hideElementsForOverlay() {
     document.body.style.overflow = "hidden";
     document.getElementById('dialog_pokemon').classList.remove('d_none');
     document.getElementById('myBtn').style.zIndex = "-1";
-    let currentPokemonRef = currentPokemon[id - 1 - offsetPokemon];
+}
+
+function checkTypesOfPokemon(pokeInfoRef, currentPokemonRef) {
     if (currentPokemonRef.types.length > 1) {
         pokeInfoRef.innerHTML += getHTMLForDataShow(currentPokemonRef, currentPokemonRef.types[0].type.name, currentPokemonRef.types[1].type.name);
     }
     else {
         pokeInfoRef.innerHTML += getHTMLForDataShow(currentPokemonRef, currentPokemonRef.types[0].type.name, "no");
     }
-    pokeInfoRef.innerHTML += getHTMLForDataMain(currentPokemonRef);
-    pokeInfoRef.innerHTML += getHTMLForDataStats(currentPokemonRef);
-
 }
 
 function closePokemon() {
@@ -144,28 +103,6 @@ function toggleInfo(id) {
 function stopBubbling(event) {
     event.stopPropagation();
 }
-
-function capitalizeFirstLetter(word) {
-    const capitalized = word.charAt(0).toUpperCase() + word.slice(1);
-    return capitalized;
-}
-
-function checkMoreTypes(types) {
-    let _types = '';
-    for (let i = 0; i < types.length; i++) {
-        _types += types[i].type.name + ' ';
-    }
-    return _types.trim();
-}
-
-function checkMoreAbilities(abilities) {
-    let _abilities = '';
-    for (let i = 0; i < abilities.length; i++) {
-        _abilities += abilities[i].ability.name + ' ';
-    }
-    return _abilities.trim();
-}
-
 
 //TODO: chain get with name ?!
 // async function getEvoChain(id) {
