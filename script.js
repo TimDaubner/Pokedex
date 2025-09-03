@@ -58,6 +58,7 @@ function filterAndShowNames(filterWord) {
 }
 
 function openPokemon(id) {
+    document.body.style.overflow = "hidden";
     document.getElementById('dialog_pokemon').classList.remove('d_none');
 
     document.getElementById('dialog_pokemon_info').innerHTML += getHTMLForDataShow(currentPokemon[id - 1], currentPokemon[id - 1].types[0].type.name);
@@ -66,6 +67,7 @@ function openPokemon(id) {
 }
 
 function closePokemon() {
+    document.body.style.overflow = "visible";
     document.getElementById('dialog_pokemon_info').innerHTML = '';
     document.getElementById('dialog_pokemon').classList.add('d_none');
 }
