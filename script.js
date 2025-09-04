@@ -41,6 +41,10 @@ function filterAndShowNames(filterWord) {
     pokemonStorage = currentPokemon.filter(name => name.inculdes(filterWord));
 }
 
+function searchPokemon() {
+    console.log(document.getElementById('input_pokemon').value);
+}
+
 function highlightButton(number) {
     for (let i = 1; i <= 9; i++) {
         document.getElementById(`gen_${i}`).classList.remove('highlight');
@@ -56,12 +60,13 @@ function openPokemon(id) {
     checkTypesOfPokemon(pokeInfoRef, currentPokemonRef);
     pokeInfoRef.innerHTML += getHTMLForDataMain(currentPokemonRef);
     pokeInfoRef.innerHTML += getHTMLForDataStats(currentPokemonRef);
+    createChart(currentPokemonRef);
 }
 
 function hideElementsForOverlay() {
     document.body.style.overflow = "hidden";
     document.getElementById('dialog_pokemon').classList.remove('d_none');
-    document.getElementById('myBtn').style.zIndex = "-1";
+    document.getElementById('myBtn').style.zIndex = "0";
 }
 
 function checkTypesOfPokemon(pokeInfoRef, currentPokemonRef) {
@@ -81,11 +86,15 @@ function closePokemon() {
 }
 
 function changePokemon(direction, id) {
-    if (direction == "left") {
-        openPokemon(currentPokemon[id - 1].id);
+    if (direction == "left" && id != offsetPokemon + 1) {
+        id--;
+        closePokemon();
+        openPokemon(currentPokemon[id - 1 - offsetPokemon].id);
     }
-    else if (direction == "right") {
-        openPokemon(currentPokemon[id + 1].id);
+    else if (direction == "right" && id != currentPokemon.length + offsetPokemon) {
+        id++;
+        closePokemon();
+        openPokemon(currentPokemon[id - 1 - offsetPokemon].id);
     }
 }
 

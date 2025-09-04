@@ -29,11 +29,10 @@ function getHTMLForDataMain(pokemon) {
 function getHTMLForDataStats(pokemon) {
     return `
         <div id="stats_${pokemon.id}" class="data stats">
-            <p>${pokemon.stats[0].stat.name} : ${pokemon.stats[0].base_stat}</p>
-            <p>${pokemon.stats[1].stat.name} : ${pokemon.stats[1].base_stat}</p>
-            <p>${pokemon.stats[2].stat.name} : ${pokemon.stats[2].base_stat}</p>
-            <p>${pokemon.stats[3].stat.name} : ${pokemon.stats[3].base_stat}</p>
-            <p>${pokemon.stats[4].stat.name} : ${pokemon.stats[4].base_stat}</p>
-            <p>${pokemon.stats[5].stat.name} : ${pokemon.stats[5].base_stat}</p>
+            <canvas id="myChart"></canvas>
+            <div class="arrow-btns">
+                <button onclick="changePokemon('left',${pokemon.id})" class="previous-btn btn-gen">Past</button>
+                <button onclick="changePokemon('right',${pokemon.id})" class="next-btn btn-gen">Next</button>
+            </div>
         </div>`
 }

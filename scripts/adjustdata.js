@@ -14,7 +14,10 @@ function checkMoreTypes(types) {
 function checkMoreAbilities(abilities) {
     let _abilities = '';
     for (let i = 0; i < abilities.length; i++) {
-        _abilities += abilities[i].ability.name + ' ';
+        if (i == 0)
+            _abilities += `${abilities[i].ability.name} and `;
+        else
+            _abilities += `${abilities[i].ability.name}`;
     }
     return _abilities.trim();
 }
