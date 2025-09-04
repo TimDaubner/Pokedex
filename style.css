@@ -201,13 +201,21 @@ body {
 
 /* #region header */
 
+.logo {
+    width: 75px;
+    aspect-ratio: 1/1;
+    margin-right: 16px;
+}
+
 h1 {
-    letter-spacing: 4px;
     font-size: 64px;
     color: rgb(255, 217, 0);
     z-index: 5;
     text-shadow: -2px -2px 0 #1368a6, 2px -2px 0 #1368a6,
         -2px 2px 0 #1368a6, 2px 2px 0 #1368a6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .poke-gens {

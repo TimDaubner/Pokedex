@@ -1,5 +1,6 @@
 let pokemonStorage = [];
 let currentPokemon = [];
+let pokemonSearch = [];
 let offsetPokemon = -1;
 
 function init() {
@@ -37,12 +38,20 @@ function renderPokemon(data) {
     }
 }
 
-function filterAndShowNames(filterWord) {
-    pokemonStorage = currentPokemon.filter(name => name.inculdes(filterWord));
-}
-
 function searchPokemon() {
-    console.log(document.getElementById('input_pokemon').value);
+    console.log(pokemonSearch);
+    let filterWord = document.getElementById('input_pokemon').value;
+    if (tryParseInt(filterWord)) {
+        filterAndShowID(filterWord);
+        return;
+    }
+    if (filterWord.length <= 3) {
+        document.getElementById('input_pokemon').placeholder = 'min. 3 letters...'
+        document.getElementById('input_pokemon').value = '';
+        return;
+    }
+    filterWord = filterWord.toString().toLowerCase();
+    filterAndShowNames(filterWord);
 }
 
 function highlightButton(number) {
@@ -54,8 +63,12 @@ function highlightButton(number) {
 
 function openPokemon(id) {
     let pokeInfoRef = document.getElementById('dialog_pokemon_info');
-    let currentPokemonRef = currentPokemon[id - 1 - offsetPokemon];
-
+    let currentPokemonRef;
+    for (let i = 0; i < currentPokemon.length; i++) {
+        if (id == currentPokemon[i].id) {
+            currentPokemonRef = currentPokemon[i];
+        }
+    }
     hideElementsForOverlay();
     checkTypesOfPokemon(pokeInfoRef, currentPokemonRef);
     pokeInfoRef.innerHTML += getHTMLForDataMain(currentPokemonRef);
@@ -87,14 +100,20 @@ function closePokemon() {
 
 function changePokemon(direction, id) {
     if (direction == "left" && id != offsetPokemon + 1) {
-        id--;
         closePokemon();
-        openPokemon(currentPokemon[id - 1 - offsetPokemon].id);
+        for (let i = 0; i < currentPokemon.length; i++) {
+            if (id == currentPokemon[i].id) {
+                openPokemon(currentPokemon[i - 1].id);
+            }
+        }
     }
-    else if (direction == "right" && id != currentPokemon.length + offsetPokemon) {
-        id++;
+    else if (direction == "right") {
         closePokemon();
-        openPokemon(currentPokemon[id - 1 - offsetPokemon].id);
+        for (let i = 0; i < currentPokemon.length; i++) {
+            if (id == currentPokemon[i].id && i != currentPokemon.length - 1) {
+                openPokemon(currentPokemon[i + 1].id);
+            }
+        }
     }
 }
 

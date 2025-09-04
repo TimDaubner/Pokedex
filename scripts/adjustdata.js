@@ -21,3 +21,11 @@ function checkMoreAbilities(abilities) {
     }
     return _abilities.trim();
 }
+
+function tryParseInt(value) {
+    const result = parseInt(value, 10);
+    if (isNaN(result)) {
+        return false;
+    }
+    return true;
+}
