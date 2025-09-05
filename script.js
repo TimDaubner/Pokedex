@@ -4,6 +4,7 @@ let pokemonSearch = [];
 let offsetPokemon = -1;
 
 function init() {
+    addGenButtons();
     highlightButton(1);
     getPokemonGenInfo(0, 151);
 }
@@ -59,6 +60,14 @@ function highlightButton(number) {
         document.getElementById(`gen_${i}`).classList.remove('highlight');
     }
     document.getElementById(`gen_${number}`).classList.add('highlight');
+}
+
+function addGenButtons() {
+    let pokemonGens = [{ start: 0, end: 151 }, { start: 151, end: 100 }, { start: 251, end: 135 }, { start: 386, end: 107 }, { start: 493, end: 156 }, { start: 649, end: 72 }, { start: 721, end: 88 }, { start: 809, end: 96 }, { start: 905, end: 120 }];
+    let genRef = document.getElementById('gen');
+    for (let i = 0; i < 9; i++) {
+        genRef.innerHTML += `<button id="gen_${i + 1}" onclick="getPokemonGenInfo(${pokemonGens[i].start},${pokemonGens[i].end}), highlightButton(${i + 1})" class="btn-gen">Gen ${i + 1}</button>`
+    }
 }
 
 function openPokemon(id) {

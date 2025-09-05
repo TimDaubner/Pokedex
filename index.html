@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/doublecardcolor.css">
     <link rel="stylesheet" href="./css/cardcolor.css">
     <link rel="stylesheet" href="standard.css">
     <link rel="stylesheet" href="style.css">
@@ -40,17 +39,7 @@
             </div>
         </header>
 
-        <nav id="gen" class="poke-gens d_none">
-            <button id="gen_1" onclick="getPokemonGenInfo(0,151), highlightButton(1)" class="btn-gen">Gen 1</button>
-            <button id="gen_2" onclick="getPokemonGenInfo(151,100), highlightButton(2)" class="btn-gen">Gen 2</button>
-            <button id="gen_3" onclick="getPokemonGenInfo(251,135), highlightButton(3)" class="btn-gen">Gen 3</button>
-            <button id="gen_4" onclick="getPokemonGenInfo(386,107), highlightButton(4)" class="btn-gen">Gen 4</button>
-            <button id="gen_5" onclick="getPokemonGenInfo(493,156), highlightButton(5)" class="btn-gen">Gen 5</button>
-            <button id="gen_6" onclick="getPokemonGenInfo(649,72), highlightButton(6)" class="btn-gen">Gen 6</button>
-            <button id="gen_7" onclick="getPokemonGenInfo(721,88), highlightButton(7)" class="btn-gen">Gen 7</button>
-            <button id="gen_8" onclick="getPokemonGenInfo(809,96), highlightButton(8)" class="btn-gen">Gen 8</button>
-            <button id="gen_9" onclick="getPokemonGenInfo(905,120), highlightButton(9)" class="btn-gen">Gen 9</button>
-        </nav>
+        <nav id="gen" class="poke-gens d_none"></nav>
         <section class="content d_none" id="content">
         </section>
         <dialog onclick="closePokemon()" id="dialog_pokemon" class="dialog-style d_none">
