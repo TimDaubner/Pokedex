@@ -11,6 +11,15 @@ function checkMoreTypes(types) {
     return _types.trim();
 }
 
+function styleCardBackground(types) {
+    if (types.length > 1) {
+        return `style="background:linear-gradient(45deg,var(--${types[0].type.name}) 0%, var(--${types[1].type.name}) 100% "`
+    }
+    else {
+        return `style="background:linear-gradient(45deg,var(--${types[0].type.name}) 100%)"`
+    }
+}
+
 function checkMoreAbilities(abilities) {
     let _abilities = '';
     for (let i = 0; i < abilities.length; i++) {
