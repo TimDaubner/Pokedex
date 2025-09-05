@@ -1,13 +1,15 @@
+//TODO - search function toggle all pokemon gens or only current gen
+
 function getBaseUrl() {
     let baseURL = "https://pokeapi.co/api/v2";
     return baseURL;
 }
 
+//TODO - language function fetch german stuff for all if needed en/ger
 async function language(lang) {
     try {
         let response = await fetch(`${getBaseUrl()}/pokemon-species/1/`);
         let langDE = await response.json();
-        console.log(langDE);
 
     } catch (error) {
         console.error(error);
@@ -15,8 +17,6 @@ async function language(lang) {
 }
 
 async function getPokemonGenInfo(start, end) {
-    if (offsetPokemon == start) return;
-
     offsetPokemon = start;
     switchLoadingContent(true);
     try {
@@ -48,9 +48,7 @@ async function getPokemonProperties(pokemonGen) {
 }
 
 async function filterAndShowNames(filterWord) {
-    pokemonStorage = pokemonSearch.filter(pokemon => {
-        return pokemon.name.includes(filterWord);
-    });
+    filterName(filterWord);
     try {
         let promises = pokemonStorage.map(async pokemon => {
             let response = await fetch(pokemon.url);
@@ -67,6 +65,7 @@ async function filterAndShowNames(filterWord) {
     }
 }
 
+//TODO - short it
 async function filterAndShowID(filterWord) {
     pokemonStorage = pokemonSearch.filter(pokemon => {
         return pokemon.id == filterWord;

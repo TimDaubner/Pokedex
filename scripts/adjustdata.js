@@ -31,6 +31,12 @@ function checkMoreAbilities(abilities) {
     return _abilities.trim();
 }
 
+function filterName(filterWord) {
+    pokemonStorage = pokemonSearch.filter(pokemon => {
+        return pokemon.name.includes(filterWord);
+    });
+}
+
 function tryParseInt(value) {
     const result = parseInt(value, 10);
     if (isNaN(result)) {

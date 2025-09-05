@@ -40,13 +40,12 @@ function renderPokemon(data) {
 }
 
 function searchPokemon() {
-    console.log(pokemonSearch);
     let filterWord = document.getElementById('input_pokemon').value;
     if (tryParseInt(filterWord)) {
         filterAndShowID(filterWord);
         return;
     }
-    if (filterWord.length <= 3) {
+    if (filterWord.length < 3) {
         document.getElementById('input_pokemon').placeholder = 'min. 3 letters...'
         document.getElementById('input_pokemon').value = '';
         return;
@@ -63,7 +62,6 @@ function highlightButton(number) {
 }
 
 function addGenButtons() {
-    let pokemonGens = [{ start: 0, end: 151 }, { start: 151, end: 100 }, { start: 251, end: 135 }, { start: 386, end: 107 }, { start: 493, end: 156 }, { start: 649, end: 72 }, { start: 721, end: 88 }, { start: 809, end: 96 }, { start: 905, end: 120 }];
     let genRef = document.getElementById('gen');
     for (let i = 0; i < 9; i++) {
         genRef.innerHTML += `<button id="gen_${i + 1}" onclick="getPokemonGenInfo(${pokemonGens[i].start},${pokemonGens[i].end}), highlightButton(${i + 1})" class="btn-gen">Gen ${i + 1}</button>`
@@ -92,12 +90,7 @@ function hideElementsForOverlay() {
 }
 
 function checkTypesOfPokemon(pokeInfoRef, currentPokemonRef) {
-    if (currentPokemonRef.types.length > 1) {
-        pokeInfoRef.innerHTML += getHTMLForDataShow(currentPokemonRef, currentPokemonRef.types[0].type.name, currentPokemonRef.types[1].type.name);
-    }
-    else {
-        pokeInfoRef.innerHTML += getHTMLForDataShow(currentPokemonRef, currentPokemonRef.types[0].type.name, "no");
-    }
+    pokeInfoRef.innerHTML += getHTMLForDataShow(currentPokemonRef);
 }
 
 function closePokemon() {
@@ -106,22 +99,22 @@ function closePokemon() {
     document.getElementById('dialog_pokemon').classList.add('d_none');
     document.getElementById('myBtn').style.zIndex = "1";
 }
-
+//TODO - valid search indexofArray 
 function changePokemon(direction, id) {
-    if (direction == "left" && id != offsetPokemon + 1) {
-        closePokemon();
-        for (let i = 0; i < currentPokemon.length; i++) {
-            if (id == currentPokemon[i].id) {
-                openPokemon(currentPokemon[i - 1].id);
-            }
-        }
+    if (direction == "left") {
+        checkNextOrPast(-1, id);
     }
     else if (direction == "right") {
-        closePokemon();
-        for (let i = 0; i < currentPokemon.length; i++) {
-            if (id == currentPokemon[i].id && i != currentPokemon.length - 1) {
-                openPokemon(currentPokemon[i + 1].id);
-            }
+        if (currentPokemon.length == id) return;
+        checkNextOrPast(1, id)
+    }
+}
+
+function checkNextOrPast(identifier, id) {
+    closePokemon();
+    for (let i = 0; i < currentPokemon.length; i++) {
+        if (id == currentPokemon[i].id && i != currentPokemon.length - 1) {
+            openPokemon(currentPokemon[i + identifier].id);
         }
     }
 }

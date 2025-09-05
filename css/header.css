@@ -1,0 +1,85 @@
+/* #region header */
+
+.logo {
+    width: 75px;
+    aspect-ratio: 1/1;
+    margin-right: 16px;
+}
+
+h1 {
+    font-size: 64px;
+    color: rgb(255, 217, 0);
+    z-index: 5;
+    text-shadow: -2px -2px 0 #1368a6, 2px -2px 0 #1368a6,
+        -2px 2px 0 #1368a6, 2px 2px 0 #1368a6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poke-gens {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 24px 0;
+}
+
+.btn-gen {
+    width: 100px;
+    height: 50px;
+    margin-right: 16px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 24px;
+    background-color: rgb(255, 217, 0);
+}
+
+.arrow-btns {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-radius: 24px;
+    outline: 4px solid rgb(255, 217, 0);
+    margin-top: 8px;
+}
+
+.highlight {
+    outline: 6px solid rgb(255, 0, 0);
+    transform: scale(1.1);
+}
+
+.btn-gen:hover {
+    outline: 6px solid rgb(255, 0, 0);
+    transform: scale(1.1);
+}
+
+
+.search-bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.btn-search {
+    width: 250px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 24px 0 0 24px;
+    background-color: rgb(255, 217, 0);
+}
+
+.input-pokemon {
+    width: 250px;
+    height: 50px;
+    padding-block: 0;
+    padding-inline: 0;
+    background-color: white;
+    border-radius: 0 24px 24px 0;
+    padding: 16px;
+    font-size: 24px;
+}
+
+/* #endregion header */

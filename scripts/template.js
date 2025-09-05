@@ -5,7 +5,7 @@ function getHTMLForPokeCard(pokemon) {
     </div> `
 }
 
-function getHTMLForDataShow(pokemon, color, color2) {
+function getHTMLForDataShow(pokemon) {
     return `
         <div id="show_${pokemon.id}" class="data show">
             <p>Name: ${capitalizeFirstLetter(pokemon.name)} #${pokemon.id}</p>
