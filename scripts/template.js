@@ -31,9 +31,9 @@ function getHTMLForDataStats(pokemon) {
         <div id="stats_${pokemon.id}" class="data stats">
             <canvas id="myChart"></canvas>
             <div class="arrow-btns">
-                <button onclick="changePokemon('left',${pokemon.id})" class="previous-btn btn-gen">Past</button>
+                <button id="change_left_${pokemon.id}" onclick="changePokemon('left',${pokemon.id})" class="previous-btn btn-gen">Past</button>
                 <button onclick="closePokemon()" class="previous-btn btn-gen">X</button>
-                <button onclick="changePokemon('right',${pokemon.id})" class="next-btn btn-gen">Next</button>
+                <button id="change_right_${pokemon.id}" onclick="changePokemon('right',${pokemon.id})" class="next-btn btn-gen">Next</button>
             </div>
         </div>`
 }

@@ -47,6 +47,13 @@
     height: 100vh;
     font-size: 64px;
     background-color: rgb(255, 217, 0);
+    text-align: center;
+}
+
+@media(max-width:650px) {
+    .load-content {
+        flex-direction: column;
+    }
 }
 
 .pokeball-load {

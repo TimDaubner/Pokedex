@@ -4,7 +4,8 @@ let pokemonSearch = [];
 let offsetPokemon = -1;
 
 function init() {
-    addGenButtons();
+    addGenButtons(document.getElementById('gen'));
+    addGenButtons(document.getElementById('gen_content'));
     highlightButton(1);
     getPokemonGenInfo(0, 151);
 }
@@ -39,6 +40,7 @@ function renderPokemon(data) {
             document.getElementById(pokemon.id).innerHTML += getHTMLForDataShow(pokemon, pokemon.types[0].type.name, "no");
         }
     }
+    screenResolutionDropdown();
 }
 
 function searchPokemon() {
@@ -47,9 +49,12 @@ function searchPokemon() {
         filterAndShowID(filterWord);
         return;
     }
-    if (filterWord.length < 3) {
+    if (filterWord.length < 3 && filterWord.length != 0) {
         document.getElementById('warning').classList.remove('d_none');
         return;
+    }
+    if (filterWord.trim() === '') {
+        renderPokemon(currentPokemon);
     }
     filterWord = filterWord.toString().toLowerCase();
     filterAndShowNames(filterWord);
@@ -67,8 +72,7 @@ function highlightButton(number) {
     document.getElementById(`gen_${number}`).classList.add('highlight');
 }
 
-function addGenButtons() {
-    let genRef = document.getElementById('gen');
+function addGenButtons(genRef) {
     for (let i = 0; i < 9; i++) {
         genRef.innerHTML += `<button id="gen_${i + 1}" onclick="getPokemonGenInfo(${pokemonGens[i].start},${pokemonGens[i].end}), highlightButton(${i + 1})" class="btn-gen">Gen ${i + 1}</button>`
     }
@@ -87,6 +91,7 @@ function openPokemon(id) {
     pokeInfoRef.innerHTML += getHTMLForDataMain(currentPokemonRef);
     pokeInfoRef.innerHTML += getHTMLForDataStats(currentPokemonRef);
     createChart(currentPokemonRef);
+    hideNextOrPastBtn(currentPokemonRef);
 }
 
 function hideElementsForOverlay() {
@@ -105,7 +110,7 @@ function closePokemon() {
     document.getElementById('dialog_pokemon').classList.add('d_none');
     document.getElementById('myBtn').style.zIndex = "1";
 }
-//TODO - valid search indexofArray 
+
 function changePokemon(direction, id) {
     const index = currentPokemon.findIndex(p => p.id === id);
     if (direction == "left" && index > 0) {
@@ -123,6 +128,15 @@ function checkNextOrPast(identifier, index) {
     openPokemon(nextPokemon.id);
 }
 
+function hideNextOrPastBtn(nextPokemon) {
+    if (nextPokemon.id == currentPokemon[currentPokemon.length - 1].id) {
+        document.getElementById(`change_right_${nextPokemon.id}`).classList.add('d_none');
+    }
+    if (nextPokemon == currentPokemon[0]) {
+        document.getElementById(`change_left_${nextPokemon.id}`).classList.add('d_none');
+    }
+}
+
 function toggleInfo(id) {
     if (document.getElementById(`main_${id}`).classList.contains('d_none')) {
         document.getElementById(`main_${id}`).classList.remove('d_none');
@@ -137,44 +151,3 @@ function toggleInfo(id) {
 function stopBubbling(event) {
     event.stopPropagation();
 }
-
-//TODO: chain get with name ?!
-// async function getEvoChain(id) {
-//     try {
-//         let response = await fetch(`${getBaseUrl()}/evolution-chain/${id}`);
-//         let evoChain = await response.json();
-//         //return species.name f.e. "bulbasaur"
-//         console.log(evoChain.chain.species.name);
-//         if (evoChain.chain.evolves_to[0]) {
-//             console.log(evoChain.chain.evolves_to[0]);
-//         }
-//         if (evoChain.chain.evolves_to[0].evolves_to[0]) {
-//             console.log(evoChain.chain.evolves_to[0].species.name);
-//         }
-//         if (evoChain.chain.evolves_to[0].evolves_to[0].evolves_to[0]) {
-//             console.log(evoChain.chain.evolves_to[0].species.name);
-//         }
-//         // console.log(evoChain.chain.evolves_to[0].evolves_to[0].species.name);
-//         // getPokemonEvolutions(evoChain.results);
-//     }
-//     catch (error) {
-//         console.error(error);
-//     }
-// }
-
-//TODO: check if i wanna use it
-// async function getPokemonEvolutions(pokemonEvolutions) {
-//     try {
-//         let promises = pokemonEvolutions.map(async (evo) => {
-//             let res = await fetch(evo.evolves_to[0].species.name);
-//             return await res.json();
-//         });
-
-//         let storage = await Promise.all(promises);
-//         return storage;
-
-
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }

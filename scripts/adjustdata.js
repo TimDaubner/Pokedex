@@ -44,3 +44,10 @@ function tryParseInt(value) {
     }
     return true;
 }
+
+function screenResolutionDropdown() {
+    if (screen.width < 510) {
+        document.getElementById('gen').classList.add('d_none');
+        document.getElementById('gen_dropdown').classList.remove('d_none');
+    }
+}

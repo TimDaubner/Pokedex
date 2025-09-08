@@ -1,3 +1,5 @@
+//For tidy up my index.html less links ;)
+
 const styles = [
     "./css/cardcolor.css",
     "./css/functionelements.css",
@@ -5,15 +7,15 @@ const styles = [
     "./css/pokecard.css",
 ];
 
-function loadStyle(href) {
-    const l = document.createElement("link");
-    l.rel = "stylesheet";
-    l.href = href;
-    l.onerror = () => console.error(`Failed to load style: ${href}`);
-    document.head.appendChild(l);
+function loadAllStyleSheets(href) {
+    const cssLink = document.createElement("link");
+    cssLink.rel = "stylesheet";
+    cssLink.href = href;
+    cssLink.onerror = () => console.error(`Failed to load style: ${href}`);
+    document.head.appendChild(cssLink);
 }
 
-styles.forEach(loadStyle);
+styles.forEach(loadAllStyleSheets);
 
 const scripts = [
     "./scripts/adjustdata.js",
@@ -27,7 +29,7 @@ const scripts = [
 
 ];
 
-function loadScript(src, callback) {
+function loadAllScripts(src, callback) {
     const s = document.createElement("script");
     s.src = src;
     s.onload = callback;
@@ -37,7 +39,7 @@ function loadScript(src, callback) {
 
 (function load(index = 0) {
     if (index < scripts.length) {
-        loadScript(scripts[index], () => load(index + 1));
+        loadAllScripts(scripts[index], () => load(index + 1));
     }
 })();
 
