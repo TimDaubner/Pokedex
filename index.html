@@ -28,9 +28,11 @@
             <h1><img class="logo" src="./img/pokemonball.png" alt="">Pokédex</h1>
             <div class="search-bar">
                 <button onclick="searchPokemon()" class="btn-search">Search</button>
-                <input id="input_pokemon" class="input-pokemon" type="text">
+                <input onkeyup="searchPokemon()" id="input_pokemon" class="input-pokemon" type="text" placeholder="...">
             </div>
         </header>
+        <div id="warning" class="red-warning d_none">min. 3 letter!<button class="little-cross"
+                onclick="closeWarning()">x</button></div>
 
         <nav id="gen" class="poke-gens d_none"></nav>
         <section class="content d_none" id="content">

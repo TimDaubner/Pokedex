@@ -30,6 +30,14 @@
     }
 }
 
+
+@media(max-width:600px) {
+    #myBtn {
+        right: 28vw;
+        z-index: 1;
+    }
+}
+
 .load-content {
     z-index: 100;
     display: flex;

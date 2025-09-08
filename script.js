@@ -46,12 +46,16 @@ function searchPokemon() {
         return;
     }
     if (filterWord.length < 3) {
-        document.getElementById('input_pokemon').placeholder = 'min. 3 letters...'
-        document.getElementById('input_pokemon').value = '';
+        document.getElementById('warning').classList.remove('d_none');
         return;
     }
     filterWord = filterWord.toString().toLowerCase();
     filterAndShowNames(filterWord);
+    document.getElementById('warning').classList.add('d_none');
+}
+
+function closeWarning() {
+    document.getElementById('warning').classList.add('d_none');
 }
 
 function highlightButton(number) {
@@ -101,22 +105,20 @@ function closePokemon() {
 }
 //TODO - valid search indexofArray 
 function changePokemon(direction, id) {
-    if (direction == "left") {
-        checkNextOrPast(-1, id);
+    const index = currentPokemon.findIndex(p => p.id === id);
+    if (direction == "left" && index > 0) {
+        checkNextOrPast(-1, index);
     }
-    else if (direction == "right") {
+    else if (direction == "right" && index < currentPokemon.length - 1) {
         if (currentPokemon.length == id) return;
-        checkNextOrPast(1, id)
+        checkNextOrPast(1, index)
     }
 }
 
-function checkNextOrPast(identifier, id) {
+function checkNextOrPast(identifier, index) {
     closePokemon();
-    for (let i = 0; i < currentPokemon.length; i++) {
-        if (id == currentPokemon[i].id && i != currentPokemon.length - 1) {
-            openPokemon(currentPokemon[i + identifier].id);
-        }
-    }
+    const nextPokemon = currentPokemon[index + identifier];
+    openPokemon(nextPokemon.id);
 }
 
 function toggleInfo(id) {

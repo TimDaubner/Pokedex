@@ -6,6 +6,7 @@
     outline: 2px solid black;
     width: 100%;
     border-radius: 0 0 24px 24px;
+    min-width: 350px;
 }
 
 .sprite {
@@ -34,6 +35,24 @@
     background-color: rgb(195, 166, 0);
 }
 
+@media(max-width:900px) {
+    .poke-card {
+        transform: scale(0.9);
+    }
+}
+
+@media(max-width:500px) {
+    .poke-card {
+        transform: scale(0.7);
+    }
+}
+
+@media(max-width:385px) {
+    .poke-card {
+        transform: scale(0.55);
+    }
+}
+
 .frame-poke-card {
     display: flex;
     justify-content: center;
@@ -44,7 +63,7 @@
     margin: 12px;
     background-color: rgb(0, 0, 0);
     cursor: pointer;
-    width: 320px;
+    width: 345px;
 }
 
 .data {
@@ -53,6 +72,7 @@
     align-items: flex-start;
     outline: 2px solid black;
     width: 100%;
+    min-width: 350px;
 }
 
 .show {
@@ -66,6 +86,7 @@
     width: 100%;
     border-radius: 24px 24px 0 0;
     font-family: 'Neue Comic', cursive;
+    min-width: 350px;
 }
 
 .main {
@@ -93,6 +114,8 @@
     text-align: left;
     outline: 2px solid black;
     border-radius: 0 0 24px 24px;
+    min-height: 300px;
+    min-width: 350px;
 }
 
 .stats:hover {
