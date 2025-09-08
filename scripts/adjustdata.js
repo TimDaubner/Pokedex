@@ -48,6 +48,11 @@ function tryParseInt(value) {
 function screenResolutionDropdown() {
     if (screen.width < 510) {
         document.getElementById('gen').classList.add('d_none');
+        document.getElementById('gen_content').classList.add('d_none');
         document.getElementById('gen_dropdown').classList.remove('d_none');
     }
+}
+
+function toggleDropdownMenu() {
+    document.getElementById('gen_content').classList.toggle('d_none');
 }
