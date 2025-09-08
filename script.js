@@ -15,12 +15,14 @@ function switchLoadingContent(isLoading) {
         document.getElementById('header').classList.remove('d_none');
         document.getElementById('gen').classList.remove('d_none');
         document.getElementById('content').classList.remove('d_none');
+        document.getElementById('wrapper').classList.remove('d_none');
     }
     else if (isLoading) {
         document.getElementById('load_content').classList.remove('d_none');
         document.getElementById('header').classList.add('d_none');
         document.getElementById('gen').classList.add('d_none');
         document.getElementById('content').classList.add('d_none');
+        document.getElementById('wrapper').classList.add('d_none');
     }
 }
 
